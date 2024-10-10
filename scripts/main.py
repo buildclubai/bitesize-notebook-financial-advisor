@@ -1,14 +1,15 @@
 import os
+import sys
+
+# Add the parent directory to the Python path
+sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+
 from dotenv import load_dotenv
 import openai
-from scripts import (
-    load_data,
-    categorize_transactions,
-    generate_financial_summary,
-    generate_personalized_advice,
-    create_pdf_report,
-    launch_gradio_ui
-)
+from scripts.data_extraction import load_data
+from scripts.financial_advice import generate_financial_advice
+from scripts.financial_summary import generate_financial_summary
+from scripts.gradio_ui import launch_gradio_ui
 
 # Load environment variables
 load_dotenv()
