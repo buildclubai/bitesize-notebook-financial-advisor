@@ -1,3 +1,7 @@
+> [!NOTE]  
+> This project is part of our Build Club e-learning.
+> To get a guided tutorial please visit and [enroll in our courses](https://app.buildclub.ai/learn/).
+
 ![AI Financial Advisor](./assets/screenshot.png)
 
 # AI Financial Advisor
