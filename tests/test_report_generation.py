@@ -1,5 +1,11 @@
+import sys
+import os
+
+# Add the parent directory to the Python path
+sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+
 import pytest
-from scripts import create_pdf_report
+from report_generation import create_pdf_report
 
 def test_create_pdf_report(mocker):
     mock_pdfkit = mocker.patch('pdfkit.from_string')

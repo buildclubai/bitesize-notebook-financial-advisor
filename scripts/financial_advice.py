@@ -1,7 +1,17 @@
 import openai
 
-def generate_personalized_advice(df, age=None, lifestyle=None, hobbies=None):
-    largest_expense = df[df['Income/Expense'] == 'Expense'].nlargest(1, 'Amount')
+def generate_personalized_advice(df, age, lifestyle, hobbies):
+    try:
+        largest_expense = df[df['Income/Expense'] == 'Expense'].nlargest(1, 'Amount')
+        largest_expense_category = largest_expense['Category'].values[0] if not largest_expense.empty else "Unknown"
+        largest_expense_amount = largest_expense['Amount'].values[0] if not largest_expense.empty else 0
+    except KeyError:
+        largest_expense_category = "Unknown"
+        largest_expense_amount = 0
+
+    prompt = f"Given a person aged {age} with a {lifestyle} lifestyle and interests in {hobbies}, " \
+             f"their largest expense category is {largest_expense_category} at ${largest_expense_amount}. " \
+             f"Provide personalized financial advice."
 
     completion = openai.ChatCompletion.create(
         model="gpt-4",

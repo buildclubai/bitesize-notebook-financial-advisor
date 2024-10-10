@@ -1,6 +1,12 @@
+import sys
+import os
+
+# Add the parent directory to the Python path
+sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+
 import pandas as pd
 import pytest
-from scripts import generate_personalized_advice
+from financial_advice import generate_personalized_advice
 
 def test_generate_personalized_advice(mocker):
     mock_df = pd.DataFrame({
