@@ -1,12 +1,12 @@
 import sys
 import os
+import pytest
+import pandas as pd
 
 # Add the parent directory to the Python path
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
-import pandas as pd
-import pytest
-from financial_summary import generate_financial_summary
+from scripts.financial_summary import generate_financial_summary
 
 def test_generate_financial_summary(mocker):
     mock_df = pd.DataFrame({
