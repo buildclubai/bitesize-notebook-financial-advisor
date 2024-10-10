@@ -2,13 +2,13 @@ import gradio as gr
 from scripts.financial_summary import generate_financial_summary
 from scripts.financial_advice import generate_personalized_advice
 
-def advisor_interface(df, question_type, age, lifestyle, hobbies):
-    if question_type == "Summary":
+def advisor_interface(df, request_type, age, location, hobbies):
+    if request_type == "Summary":
         return generate_financial_summary(df)
-    elif question_type == "Advice":
-        return generate_personalized_advice(df, age, lifestyle, hobbies)
+    elif request_type == "Advice":
+        return generate_personalized_advice(df, age, location, hobbies)
     else:
-        return "Please select either 'Summary' or 'Advice'."
+        return "Invalid request type. Please choose 'Summary' or 'Advice'."
 
 def launch_gradio_ui(df):
     iface = gr.Interface(
