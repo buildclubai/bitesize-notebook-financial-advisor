@@ -21,27 +21,31 @@ This project demonstrates how to build a personalized AI Financial Advisor using
 
 1. Clone this repository
 2. Install required dependencies: `pip install -r requirements.txt`
-3. Set up your OpenAI API key as an environment variable:
+3. Copy `example.env` to `.env` and update the values:
    ```
-   export OPENAI_API_KEY='your-api-key-here'
+   cp example.env .env
    ```
-4. If using Google Sheets:
-   - Set up Google Cloud Platform project and enable Google Sheets API
-   - Create service account credentials and download the JSON key file
-   - Set the path to your JSON key file as an environment variable:
-     ```
-     export GOOGLE_APPLICATION_CREDENTIALS='/path/to/your/credentials.json'
-     ```
+4. Update the following variables in your `.env` file:
+   - `OPENAI_API_KEY`: Your OpenAI API key
+   - `GOOGLE_APPLICATION_CREDENTIALS`: Path to your Google Cloud credentials JSON file (if using Google Sheets)
+   - `USE_GOOGLE_SHEETS`: Set to `true` if using Google Sheets, `false` if using local CSV
+   - `DUMMY_DATA_SPREADSHEET`: URL of the dummy data Google Sheet (provided in the example.env)
 
 ## Data
 
 The project uses a synthetic dataset of financial transactions, available in two formats:
 - CSV file: `data.csv` in the repository
-- Google Sheets: [Public Google Sheet](https://docs.google.com/spreadsheets/d/1kuDZOyzT54yovmmF0pdWypIMPQQF6ZiX8VJGMecVyqI/edit?usp=sharing)
+- Google Sheets: The URL is provided in the `DUMMY_DATA_SPREADSHEET` environment variable
 
 ## Usage
 
 Run the main script:
+
+```
+python main.py
+```
+
+This will start the Gradio UI, allowing you to interact with the AI Financial Advisor.
 
 ## License
 
