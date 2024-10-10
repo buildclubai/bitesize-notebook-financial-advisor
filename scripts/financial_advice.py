@@ -1,27 +1,32 @@
 import openai
+import pandas as pd
 
-def generate_personalized_advice(df, age, lifestyle, hobbies):
-    try:
-        largest_expense = df[df['Income/Expense'] == 'Expense'].nlargest(1, 'Amount')
-        largest_expense_category = largest_expense['Category'].values[0] if not largest_expense.empty else "Unknown"
-        largest_expense_amount = largest_expense['Amount'].values[0] if not largest_expense.empty else 0
-    except KeyError:
-        largest_expense_category = "Unknown"
-        largest_expense_amount = 0
+def generate_personalized_advice(df, age=None, lifestyle=None, hobbies=None):
+    # Convert the dataframe to a string representation
+    transactions = df.to_string(index=False)
 
-    prompt = f"Given a person aged {age} with a {lifestyle} lifestyle and interests in {hobbies}, " \
-             f"their largest expense category is {largest_expense_category} at ${largest_expense_amount}. " \
-             f"Provide personalized financial advice."
+    # Prepare the prompt
+    prompt = f"""
+    Based on the following transaction data:
 
-    completion = openai.ChatCompletion.create(
+    {transactions}
+
+    And considering the following personal information:
+    Age: {age}
+    Lifestyle: {lifestyle}
+    Hobbies: {hobbies}
+
+    Please provide personalized financial advice. Include suggestions for budgeting, saving, and potential areas for improvement.
+    """
+
+    # Generate the advice using OpenAI's API
+    response = openai.ChatCompletion.create(
         model="gpt-4o-mini",
         messages=[
-            {"role": "system", "content": "You are a helpful financial assistant. Provide personalized financial advice based on the user's transaction history and personal information."},
-            {"role": "user", "content": f"Based on the following information, provide personalized financial advice:\n"
-                                        f"Largest expense: {largest_expense['Description'].values[0]} (${largest_expense['Amount'].values[0]:.2f})\n"
-                                        f"Age: {age}\n"
-                                        f"Lifestyle: {lifestyle}\n"
-                                        f"Hobbies: {hobbies}"}
+            {"role": "system", "content": "You are a helpful financial advisor."},
+            {"role": "user", "content": prompt}
         ]
     )
-    return completion.choices[0].message.content.strip()
+
+    # Extract and return the generated advice
+    return response.choices[0].message.content

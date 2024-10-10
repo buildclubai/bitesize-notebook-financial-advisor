@@ -6,7 +6,7 @@ def advisor_interface(df, request_type, age, location, hobbies):
     if request_type == "Summary":
         return generate_financial_summary(df)
     elif request_type == "Advice":
-        return generate_personalized_advice(df, age, location, hobbies)
+        return generate_personalized_advice(df, age=age, lifestyle=location, hobbies=hobbies)
     else:
         return "Invalid request type. Please choose 'Summary' or 'Advice'."
 
@@ -18,7 +18,7 @@ def launch_gradio_ui(df):
                 choices=["Summary", "Advice"],
                 label="Select summary or advice"
             ),
-            gr.Number(label="Age", default=26),
+            gr.Number(label="Age"),
             gr.Textbox(label="Lifestyle (optional)", placeholder="e.g., Urban, Rural, Suburban"),
             gr.Textbox(label="Hobbies (optional)", placeholder="e.g., Reading, Sports, Travel")
         ],
