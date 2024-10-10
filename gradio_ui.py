@@ -1,6 +1,6 @@
 import gradio as gr
-from scripts.financial_summary import generate_financial_summary
-from scripts.financial_advice import generate_personalized_advice
+from financial_summary import generate_financial_summary
+from financial_advice import generate_personalized_advice
 
 def advisor_interface(df, question, age, lifestyle, hobbies):
     if "summary" in question.lower():

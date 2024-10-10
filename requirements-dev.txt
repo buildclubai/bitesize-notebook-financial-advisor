@@ -3,6 +3,7 @@
 
 # Local development only libraries
 pytest
+pytest-mock
 pre-commit
 flake8
 isort

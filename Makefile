@@ -49,8 +49,8 @@ precommit:
 	@echo "Done."
 
 run:
-	@echo "Running streamlit..."
-	@streamlit run app/main.py
+	@echo "Running app and gradio ui..."
+	@streamlit run scripts/main.py
 	@echo "Done."
 
 docker-build:

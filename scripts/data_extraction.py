@@ -24,5 +24,6 @@ def load_from_google_sheets():
     return pd.DataFrame(data)
 
 def load_from_csv():
-    csv_path = os.path.join(os.path.dirname(os.path.dirname(__file__)), 'data', 'data.csv')
+    # Use path traversal to go up one directory and then into the data folder
+    csv_path = os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(__file__))), 'data', 'data.csv')
     return pd.read_csv(csv_path)
