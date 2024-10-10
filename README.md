@@ -1,3 +1,5 @@
+![AI Financial Advisor](./assets/screenshot.png)
+
 # AI Financial Advisor
 
 This project by [Vincent Koc](https://github.com/vincentkoc) and [Hung Nguyen](https://github.com/hung-ngm) demonstrates how to build a personalized AI Financial Advisor using Python, OpenAI's GPT model, and Google Sheets or local CSV data. It's designed for people who want to learn some basics of AI, particularly those with existing Python knowledge or beginners in the field.
@@ -53,6 +55,17 @@ Second Option (Python Script):
   - `report_generation.py`: Generate PDF reports
   - `transaction_categorization.py`: Categorize transactions using GPT
 - `data/`: Directory for storing local CSV data
+  - `data.csv`: Example data
+
+## Data
+
+The data is a CSV file with the following columns:
+- `Date`: The date of the transaction
+- `Description`: The description of the transaction
+- `Amount`: The amount of the transaction
+- `Category`: The category of the transaction
+
+This synthetic data was generated using OpenAI's GPT-o1 Preview model.
 
 ## Usage
 
