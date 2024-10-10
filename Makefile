@@ -50,7 +50,7 @@ precommit:
 
 run:
 	@echo "Running app and gradio ui..."
-	@streamlit run scripts/main.py
+	@python scripts/main.py
 	@echo "Done."
 
 docker-build:
@@ -60,8 +60,7 @@ docker-build:
 
 docker-run:
 	@echo "Running docker image..."
-	@echo "Ignore Streamlit URL, You can access the app at http://localhost:$(DOCKERPORT)\n"
-	@docker run -p $(DOCKERPORT):8501 doc-qna
+	@docker run -p $(DOCKERPORT):8000 financial-advisor
 	@echo "Done."
 
 docker-compose-buildup:
@@ -70,7 +69,7 @@ docker-compose-buildup:
 	@echo "Done."
 
 test:
-	PYTHONPATH=$(PWD) pytest tests/
+	PYTHONPATH=$(PWD):$(PWD)/scripts OPENAI_API_KEY=dummy_key pytest tests/
 	@echo "Running tests..."
 	@pytest
 	@echo "Done."
@@ -85,7 +84,7 @@ help:
 	@echo "make clean - Clean up virtual environment"
 	@echo "make help - Show this help"
 	@echo "make precommit - Run pre-commit"
-	@echo "make run - Run streamlit"
+	@echo "make run - Run app and gradio ui"
 	@echo "make docker-build - Build docker image"
 	@echo "make docker-run - Run docker image"
 	@echo "make docker-compose-buildup - Run docker-compose"

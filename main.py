@@ -1,14 +1,12 @@
 import os
 from dotenv import load_dotenv
 import openai
-from scripts import (
-    load_data,
-    categorize_transactions,
-    generate_financial_summary,
-    generate_personalized_advice,
-    create_pdf_report,
-    launch_gradio_ui
-)
+from data_extraction import load_data
+from transaction_categorization import categorize_transactions
+from financial_summary import generate_financial_summary
+from financial_advice import generate_personalized_advice
+from report_generation import create_pdf_report
+from gradio_ui import launch_gradio_ui
 
 # Load environment variables
 load_dotenv()

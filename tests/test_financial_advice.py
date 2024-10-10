@@ -1,6 +1,6 @@
 import pandas as pd
 import pytest
-from scripts.financial_advice import generate_personalized_advice
+from scripts import generate_personalized_advice
 
 def test_generate_personalized_advice(mocker):
     mock_df = pd.DataFrame({

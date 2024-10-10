@@ -1,6 +1,6 @@
 import pandas as pd
 import pytest
-from scripts.gradio_ui import advisor_interface
+from scripts import advisor_interface
 
 def test_advisor_interface_summary(mocker):
     mock_df = pd.DataFrame({
@@ -10,6 +10,7 @@ def test_advisor_interface_summary(mocker):
         'Category': ['Income', 'Housing']
     })
     mocker.patch('scripts.financial_summary.generate_financial_summary', return_value="Mock summary")
+    mocker.patch('openai.ChatCompletion.create', return_value=mocker.Mock(choices=[mocker.Mock(message=mocker.Mock(content="Mock summary"))]))
     result = advisor_interface(mock_df, "Give me a summary", 30, "Urban", "Reading")
     assert result == "Mock summary"
 
@@ -21,6 +22,7 @@ def test_advisor_interface_advice(mocker):
         'Category': ['Income', 'Housing']
     })
     mocker.patch('scripts.financial_advice.generate_personalized_advice', return_value="Mock advice")
+    mocker.patch('openai.ChatCompletion.create', return_value=mocker.Mock(choices=[mocker.Mock(message=mocker.Mock(content="Mock advice"))]))
     result = advisor_interface(mock_df, "Give me advice", 30, "Urban", "Reading")
     assert result == "Mock advice"
 

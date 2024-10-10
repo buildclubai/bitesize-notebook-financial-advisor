@@ -1,5 +1,5 @@
 import pytest
-from scripts.report_generation import create_pdf_report
+from scripts import create_pdf_report
 
 def test_create_pdf_report(mocker):
     mock_pdfkit = mocker.patch('pdfkit.from_string')

@@ -1,6 +1,6 @@
 import pandas as pd
 import pytest
-from scripts.transaction_categorization import categorize_transactions, categorize_transaction
+from scripts import categorize_transactions, categorize_transaction
 
 def test_categorize_transactions(mocker):
     mock_df = pd.DataFrame({

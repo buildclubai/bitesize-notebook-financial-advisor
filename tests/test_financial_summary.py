@@ -1,6 +1,6 @@
 import pandas as pd
 import pytest
-from scripts.financial_summary import generate_financial_summary
+from scripts import generate_financial_summary
 
 def test_generate_financial_summary(mocker):
     mock_df = pd.DataFrame({
