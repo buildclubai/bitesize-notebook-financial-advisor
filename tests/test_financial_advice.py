@@ -9,7 +9,7 @@ def test_generate_personalized_advice(mocker):
         'Income/Expense': ['Expense', 'Expense']
     })
     mock_completion = mocker.Mock()
-    mock_completion.choices[0].message.content = "This is a mock financial advice."
+    mock_completion.choices = [mocker.Mock(message=mocker.Mock(content="This is a mock financial advice."))]
     mocker.patch('openai.ChatCompletion.create', return_value=mock_completion)
 
     result = generate_personalized_advice(mock_df, age=30, lifestyle="Urban", hobbies="Reading")

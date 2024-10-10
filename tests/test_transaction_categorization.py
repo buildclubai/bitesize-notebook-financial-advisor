@@ -14,7 +14,7 @@ def test_categorize_transactions(mocker):
 
 def test_categorize_transaction(mocker):
     mock_completion = mocker.Mock()
-    mock_completion.choices[0].message.content = "Groceries"
+    mock_completion.choices = [mocker.Mock(message=mocker.Mock(content="Groceries"))]
     mocker.patch('openai.ChatCompletion.create', return_value=mock_completion)
     result = categorize_transaction("Groceries at Walmart")
     assert result == "Groceries"

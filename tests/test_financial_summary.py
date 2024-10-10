@@ -10,7 +10,7 @@ def test_generate_financial_summary(mocker):
         'Category': ['Income', 'Housing', 'Groceries']
     })
     mock_completion = mocker.Mock()
-    mock_completion.choices[0].message.content = "This is a mock financial summary."
+    mock_completion.choices = [mocker.Mock(message=mocker.Mock(content="This is a mock financial summary."))]
     mocker.patch('openai.ChatCompletion.create', return_value=mock_completion)
 
     result = generate_financial_summary(mock_df)

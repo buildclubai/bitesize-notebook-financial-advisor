@@ -28,8 +28,10 @@ def test_load_from_csv(mocker):
 def test_load_from_google_sheets(mocker):
     mock_sheet = mocker.Mock()
     mock_sheet.get_all_records.return_value = [{'Date': '2023-01-01', 'Amount': 100}, {'Date': '2023-01-02', 'Amount': 200}]
+    mocker.patch('os.getenv', return_value='dummy_path')
+    mocker.patch('oauth2client.service_account.ServiceAccountCredentials.from_json_keyfile_name', return_value=mocker.Mock())
     mocker.patch('gspread.authorize', return_value=mocker.Mock())
-    mocker.patch('gspread.authorize().open_by_url().sheet1', mock_sheet)
+    mocker.patch('gspread.Client.open_by_url', return_value=mocker.Mock(sheet1=mock_sheet))
     result = load_from_google_sheets()
     assert isinstance(result, pd.DataFrame)
     assert 'Date' in result.columns
