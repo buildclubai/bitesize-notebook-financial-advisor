@@ -1,6 +1,8 @@
 # AI Financial Advisor
 
-This project demonstrates how to build a personalized AI Financial Advisor using Python, OpenAI's GPT model, and Google Sheets or local CSV data. It's designed for people who want to learn some basics of AI, particularly those with existing Python knowledge or beginners in the field.
+This project by [Vincent Koc](https://github.com/vincentkoc) and [Hung Nguyen](https://github.com/hung-ngm) demonstrates how to build a personalized AI Financial Advisor using Python, OpenAI's GPT model, and Google Sheets or local CSV data. It's designed for people who want to learn some basics of AI, particularly those with existing Python knowledge or beginners in the field.
+
+This is a great project for learning about AI, finance, and Python. This project can easily be adapted to other datasets and LLMs as well as other financial advice use cases from financial planning to investment advice to retirement planning and even startups.
 
 ## Features
 
@@ -66,4 +68,4 @@ This will start the Gradio UI, allowing you to interact with the AI Financial Ad
 
 ## License
 
-This project is open-source and available under the MIT License.
+This project is open-source and available under the GPLv3 License.
