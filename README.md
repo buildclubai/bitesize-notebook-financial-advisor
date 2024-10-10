@@ -35,7 +35,7 @@ This project demonstrates how to build a personalized AI Financial Advisor using
 
 The project uses a synthetic dataset of financial transactions, available in two formats:
 - CSV file: `data.csv` in the repository
-- Google Sheets: The URL is provided in the `DUMMY_DATA_SPREADSHEET` environment variable
+- Google Sheets: The URL is provided in the `DUMMY_DATA_SPREADSHEET` environment variable which comes from the following [Public Google Sheet](https://docs.google.com/spreadsheets/d/1kuDZOyzT54yovmmF0pdWypIMPQQF6ZiX8VJGMecVyqI/edit?usp=sharing).
 
 ## Usage
 
@@ -49,4 +49,4 @@ This will start the Gradio UI, allowing you to interact with the AI Financial Ad
 
 ## License
 
-This project is open-source and available under the MIT License.
+This project is open-source and available under the GPLv3 License.
