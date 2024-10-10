@@ -190,7 +190,7 @@ dist
 .nyc*
 .dmypy.json
 dmypy.json
-*.env
+.env
 !.example.env
 
 # Coverage & Tests
