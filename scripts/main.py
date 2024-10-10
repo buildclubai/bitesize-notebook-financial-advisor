@@ -7,7 +7,7 @@ sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 from dotenv import load_dotenv
 import openai
 from scripts.data_extraction import load_data
-from scripts.financial_advice import generate_financial_advice
+from financial_advice import generate_personalized_advice
 from scripts.financial_summary import generate_financial_summary
 from scripts.gradio_ui import launch_gradio_ui
 
@@ -18,23 +18,27 @@ load_dotenv()
 openai.api_key = os.getenv("OPENAI_API_KEY")
 
 def main():
+    # Check if the API key is set
+    if not openai.api_key:
+        print("Error: OpenAI API key is not set. Please check your .env file.")
+        return
+
     # Load data
     df = load_data()
 
-    # Categorize transactions
-    df = categorize_transactions(df)
+    try:
+        # Generate financial summary
+        summary = generate_financial_summary(df)
 
-    # Generate financial summary
-    summary = generate_financial_summary(df)
+        # Generate personalized advice
+        advice = generate_personalized_advice(df)
 
-    # Generate personalized advice
-    advice = generate_personalized_advice(df)
-
-    # Create PDF report
-    create_pdf_report(summary, advice)
-
-    # Launch Gradio UI
-    launch_gradio_ui(df)
+        # Launch Gradio UI
+        launch_gradio_ui(df)
+    except openai.error.AuthenticationError:
+        print("Error: Invalid OpenAI API key. Please check your .env file and ensure the API key is correct.")
+    except Exception as e:
+        print(f"An error occurred: {str(e)}")
 
 if __name__ == "__main__":
     main()

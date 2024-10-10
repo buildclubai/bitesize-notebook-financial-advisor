@@ -8,7 +8,7 @@ from dotenv import load_dotenv
 load_dotenv()
 
 def load_data():
-    # Check if we're using Google Sheets or local CSV
+    # Decide which method to use based on environment variables or other criteria
     if os.getenv("USE_GOOGLE_SHEETS", "false").lower() == "true":
         return load_from_google_sheets()
     else:
@@ -24,6 +24,18 @@ def load_from_google_sheets():
     return pd.DataFrame(data)
 
 def load_from_csv():
-    # Use path traversal to go up one directory and then into the data folder
-    csv_path = os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(__file__))), 'data', 'data.csv')
+    # Get the directory of the current script
+    current_dir = os.path.dirname(os.path.abspath(__file__))
+
+    # Go up one level to the project root directory
+    project_root = os.path.dirname(current_dir)
+
+    # Construct the path to the data.csv file
+    csv_path = os.path.join(project_root, 'data', 'data.csv')
+
+    # Check if the file exists
+    if not os.path.exists(csv_path):
+        raise FileNotFoundError(f"The file {csv_path} does not exist.")
+
+    # Read the CSV file
     return pd.read_csv(csv_path)
