@@ -2,25 +2,28 @@ import gradio as gr
 from scripts.financial_summary import generate_financial_summary
 from scripts.financial_advice import generate_personalized_advice
 
-def advisor_interface(df, question, age, lifestyle, hobbies):
-    if "summary" in question.lower():
+def advisor_interface(df, question_type, age, lifestyle, hobbies):
+    if question_type == "Summary":
         return generate_financial_summary(df)
-    elif "advice" in question.lower():
+    elif question_type == "Advice":
         return generate_personalized_advice(df, age, lifestyle, hobbies)
     else:
-        return "I'm sorry, I didn't understand your question. Please ask for a summary or advice."
+        return "Please select either 'Summary' or 'Advice'."
 
 def launch_gradio_ui(df):
     iface = gr.Interface(
         fn=lambda q, a, l, h: advisor_interface(df, q, a, l, h),
         inputs=[
-            gr.Textbox(label="Ask for a summary or advice"),
-            gr.Number(label="Age"),
-            gr.Textbox(label="Lifestyle"),
-            gr.Textbox(label="Hobbies")
+            gr.Dropdown(
+                choices=["Summary", "Advice"],
+                label="Select summary or advice"
+            ),
+            gr.Number(label="Age", default=26),
+            gr.Textbox(label="Lifestyle (optional)", placeholder="e.g., Urban, Rural, Suburban"),
+            gr.Textbox(label="Hobbies (optional)", placeholder="e.g., Reading, Sports, Travel")
         ],
         outputs="text",
         title="AI Financial Advisor",
-        description="Ask for a financial summary or personalized advice based on your transaction history."
+        description="Get a financial summary or personalized advice based on your transaction history."
     )
     iface.launch()
