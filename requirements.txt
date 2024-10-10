@@ -1,0 +1,6 @@
+pandas
+gspread
+oauth2client
+openai
+pdfkit
+gradio
