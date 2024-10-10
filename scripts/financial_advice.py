@@ -14,7 +14,7 @@ def generate_personalized_advice(df, age, lifestyle, hobbies):
              f"Provide personalized financial advice."
 
     completion = openai.ChatCompletion.create(
-        model="gpt-4",
+        model="gpt-4o-mini",
         messages=[
             {"role": "system", "content": "You are a helpful financial assistant. Provide personalized financial advice based on the user's transaction history and personal information."},
             {"role": "user", "content": f"Based on the following information, provide personalized financial advice:\n"

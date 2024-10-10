@@ -8,7 +8,7 @@ def categorize_transactions(df):
 
 def categorize_transaction(description):
     completion = openai.ChatCompletion.create(
-        model="gpt-4",
+        model="gpt-4o-mini",
         messages=[
             {"role": "system", "content": "You are a helpful financial assistant. Categorize transactions into one of the following categories: Groceries, Utilities, Rent, Entertainment, Transportation, Dining Out, Miscellaneous, Health & Fitness, Housing, Investments, Insurance, Charity, and Income."},
             {"role": "user", "content": f"Categorize the following transaction: '{description}'. Respond with the category name only."}

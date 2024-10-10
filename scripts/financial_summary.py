@@ -6,7 +6,7 @@ def generate_financial_summary(df):
     category_spending = df[df['Income/Expense'] == 'Expense'].groupby('Category')['Amount'].sum()
 
     completion = openai.ChatCompletion.create(
-        model="gpt-4",
+        model="gpt-4o-mini",
         messages=[
             {"role": "system", "content": "You are a helpful financial assistant. Generate a concise financial summary based on the provided data."},
             {"role": "user", "content": f"Generate a financial summary based on the following data:\n"
